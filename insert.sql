@@ -16,6 +16,7 @@ INSERT INTO Users(User_name, Password, Age, Status_id) VALUES("Dimas", "pass", 2
 INSERT INTO Users(User_name, Password, Age, Status_id) VALUES("Nikita", "pass", 22, 1);
 INSERT INTO Users(User_name, Password, Age, Status_id) VALUES("Petya", "pass", 21, 2);
 INSERT INTO Users(User_name, Password, Age, Status_id) VALUES("Valera", "pass", 17, 2);
+INSERT INTO Users(User_name, Password, Age, Status_id) VALUES("Boss", "pass", 187, 1);
 
 
 INSERT INTO Users_Roles(User_name, Role_id) VALUES("Vadim", 1);
