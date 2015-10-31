@@ -9,7 +9,7 @@ CREATE TABLE Categories
 CREATE TABLE Comments
 (
         Comment_id integer  NOT NULL ,
-        User_name varchar(20)  NOT NULL ,
+        User_id varchar(20)  NOT NULL ,
         Date_sent datetime  NOT NULL ,
         Text_cmt char(18)  NOT NULL,
         CONSTRAINT XPKComments PRIMARY KEY (Comment_id ASC)
@@ -20,12 +20,12 @@ CREATE TABLE Likes
 (
         Like_id integer  NOT NULL ,
         News_id integer  NOT NULL ,
-        User_name varchar(20)  NOT NULL,
+        User_id varchar(20)  NOT NULL,
         CONSTRAINT XPKLike PRIMARY KEY (Like_id ASC)
         CONSTRAINT  News_has_like FOREIGN KEY (News_id) REFERENCES News(News_id)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION
-        CONSTRAINT  User_put_like FOREIGN KEY (User_name) REFERENCES Users(User_name)
+        CONSTRAINT  User_put_like FOREIGN KEY (User_id) REFERENCES Users(User_id)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION
 
@@ -37,9 +37,9 @@ CREATE TABLE Logs
         Log_id integer  NOT NULL ,
         Before varchar(20)  NOT NULL ,
         After varchar(20)  NOT NULL ,
-        User_name varchar(20)  NOT NULL,
+        User_id varchar(20)  NOT NULL,
         CONSTRAINT XPKLogs PRIMARY KEY (Log_id ASC)
-        CONSTRAINT  User_put_log FOREIGN KEY (User_name) REFERENCES Users(User_name)
+        CONSTRAINT  User_put_log FOREIGN KEY (User_id) REFERENCES Users(User_id)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION
 );
@@ -52,9 +52,9 @@ CREATE TABLE News
         Header varchar(20) NOT NULL,
         Foto varchar(20)  NOT NULL ,
         Number_likes integer  NOT NULL ,
-        User_name char(18)  NOT NULL,
+        User_id char(18)  NOT NULL,
         CONSTRAINT XPKNews PRIMARY KEY (News_id ASC)
-        CONSTRAINT  User_write_news FOREIGN KEY (User_name) REFERENCES Users(User_name)
+        CONSTRAINT  User_write_news FOREIGN KEY (User_id) REFERENCES Users(User_id)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION
 );
@@ -106,11 +106,12 @@ CREATE TABLE Statuses
  
 CREATE TABLE Users
 (
+        User_id integer NOT NULL,
         User_name varchar(20)  NOT NULL ,
         Password varchar(20)  NOT NULL ,
         Age integer  NOT NULL ,
         Status_id integer  NOT NULL,
-        CONSTRAINT XPKUser PRIMARY KEY (User_name ASC)
+        CONSTRAINT XPKUser PRIMARY KEY (User_id ASC)
         CONSTRAINT  User_has_status FOREIGN KEY (Status_id) REFERENCES Statuses(Status_id)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION
@@ -119,10 +120,10 @@ CREATE TABLE Users
  
 CREATE TABLE Users_Roles
 (
-        User_name varchar(20)  NOT NULL ,
+        User_id varchar(20)  NOT NULL ,
         Role_id integer  NOT NULL ,
-        CONSTRAINT XPKUsers_Roles PRIMARY KEY (User_name ASC,Role_id ASC)
-        CONSTRAINT  Users_Roles FOREIGN KEY (User_name) REFERENCES Users(User_name)
+        CONSTRAINT XPKUsers_Roles PRIMARY KEY (User_id ASC,Role_id ASC)
+        CONSTRAINT  Users_Roles FOREIGN KEY (User_id) REFERENCES Users(User_id)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION
         CONSTRAINT  Roles_Users FOREIGN KEY (Role_id) REFERENCES Roles(Pole_id)
